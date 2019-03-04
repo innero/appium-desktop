@@ -216,6 +216,7 @@
   },
   "greenkeeper": {
     "ignore": [
+      "electron",
       "less",
       "electron-settings"
     ]
