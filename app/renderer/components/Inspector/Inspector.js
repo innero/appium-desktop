@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SCREENSHOT_INTERACTION_MODE, INTERACTION_MODE } from './shared';
-import { Card, Icon, Button, Spin, Tooltip, Modal, Tabs, Col } from 'antd';
+import { Card, Icon, Button, Spin, Tooltip, Modal, Tabs, Col, Row } from 'antd';
 import Screenshot from './Screenshot';
 import SelectedElement from './SelectedElement';
 import Source from './Source';
@@ -68,30 +68,30 @@ export default class Inspector extends Component {
           </Spin>
         }
       </div>
-      <div id='sourceTreeContainer' className={InspectorStyles['interaction-tab-container']} ref={(div) => this.container = div} >
+      <div id='sourceTreeContainer' className={InspectorStyles['interaction-tab-container']} >
         {showRecord &&
           <RecordedActions {...this.props} />
         }
         <Tabs activeKey={selectedInteractionMode} size="small" onChange={(tab) => selectInteractionMode(tab)}>
           <TabPane tab={t('Source')} key={INTERACTION_MODE.SOURCE}>
-            <Col span={12}>
-              <Card
-                title={<span><Icon type="file-text" /> {t('App Source')}</span>}
-                className={InspectorStyles['interaction-tab-card']}>
-                <Source {...this.props} />
-                {this.container && <SourceScrollButtons {...this.props} container={this.container} />}
-              </Card>
-            </Col>
-            <Col span={12}>
-              <div id='selectedElementContainer' className={`${InspectorStyles['interaction-tab-container']} ${InspectorStyles['element-detail-container']}`}>
+            <Row>
+              <Col span={12}>
                 <Card
-                  title={<span><Icon type="tag-o" /> {t('selectedElement')}</span>}
-                  className={InspectorStyles['selected-element-card']}>
-                  {path && <SelectedElement {...this.props}/>}
-                  {!path && <i>{t('selectElementInSource')}</i>}
+                  title={<span><Icon type="file-text" /> {t('App Source')}</span>}>
+                  <Source {...this.props} />
                 </Card>
-              </div>
-            </Col>
+              </Col>
+              <Col span={12}>
+                <div id='selectedElementContainer' className={`${InspectorStyles['interaction-tab-container']} ${InspectorStyles['element-detail-container']}`}>
+                  <Card
+                    title={<span><Icon type="tag-o" /> {t('selectedElement')}</span>}
+                    className={InspectorStyles['selected-element-card']}>
+                    {path && <SelectedElement {...this.props}/>}
+                    {!path && <i>{t('selectElementInSource')}</i>}
+                  </Card>
+                </div>
+              </Col>
+            </Row>
           </TabPane>
           <TabPane tab={t('Actions')} key={INTERACTION_MODE.ACTIONS}>
             <Card
