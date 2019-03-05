@@ -79,6 +79,7 @@ export default class Inspector extends Component {
                 title={<span><Icon type="file-text" /> {t('App Source')}</span>}
                 className={InspectorStyles['interaction-tab-card']}>
                 <Source {...this.props} />
+                {this.container && <SourceScrollButtons {...this.props} container={this.container} />}
               </Card>
             </Col>
             <Col span={12}>
@@ -100,7 +101,6 @@ export default class Inspector extends Component {
             </Card>
           </TabPane>
         </Tabs>
-        {this.container && <SourceScrollButtons {...this.props} container={this.container} />}
       </div>
     </div>;
 
