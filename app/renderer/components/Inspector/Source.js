@@ -80,7 +80,7 @@ class Source extends Component {
 
     return <div id='sourceContainer' className={InspectorStyles['tree-container']}>
       {source &&
-        <Tree style={{overflow: 'scroll'}}
+        <Tree
           onExpand={setExpandedPaths}
           autoExpandParent={false}
           expandedKeys={expandedPaths}
