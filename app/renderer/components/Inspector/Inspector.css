@@ -66,6 +66,10 @@
     flex-flow: column;
 }
 
+.inspector-main .interaction-tab-container :global(.ant-tree) {
+    overflow: auto;
+}
+
 .inspector-main .interaction-tab-container .scroll-buttons {
     position: absolute;
     bottom: 0;
